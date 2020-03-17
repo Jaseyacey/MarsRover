@@ -1,5 +1,7 @@
 import React from "react";
 import Rover from "./Rover";
+import renderer from 'react-test-renderer';
+import Link from '../Link.react';
 
 const MOVE_VECTOR = {
     S: [0, -1],
@@ -23,7 +25,7 @@ const RIGHT_TURNS_MAP = {
 };
 
 class Mars extends React.Component {
-
+                                            // Start position for Rover
     initialState = {
         start: null,
         end: null,
@@ -79,7 +81,7 @@ class Mars extends React.Component {
             setTimeout(this.run.bind(this), 500);
         });
     };
-
+// The logic to move the rover from one square to another 
     run = () => {
         let ops = this.state.ops.slice();
         let {position, path, facing} = this.state;
@@ -94,7 +96,7 @@ class Mars extends React.Component {
         } else if (op === "M") {
             newPosition = this.moveRoverForward();
         } else {
-            console.log("Invalid command");
+            alert("Invalid command")    
         }
         if (newPosition.error) {
             alert('Can not move beyond the boundaries of Mars');
@@ -114,7 +116,7 @@ class Mars extends React.Component {
         })
 
     };
-
+// Moving the rover around the plateau
     moveRoverForward = () => {
         const {size} = this.props;
         const {position, facing} = this.state;

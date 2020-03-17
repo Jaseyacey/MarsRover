@@ -83,6 +83,7 @@ class App extends React.Component {
                                }}
                         />
                     </div>
+                     {/* Adding commands for execution */}
                     <div className='commands'>
                         <button value='M' onClick={this.addCommand}>Move</button>
                         <button value='L' onClick={this.addCommand}>Left</button>
@@ -97,10 +98,10 @@ class App extends React.Component {
                         <label>Sample: </label>
                         <ul>
                             <li>
-                                <button value={'MMRMMLMMRM'} onClick={this.runSample}>MMRMMLMMRM</button>
+                                <button value={'LMLMLMLMM'} onClick={this.runSample}>LMLMLMLMM</button>
                             </li>
                             <li>
-                                <button value={'RMMMLMRMLM'} onClick={this.runSample}>RMMMLMRMLM</button>
+                                <button value={'MMRMMRMRRM'} onClick={this.runSample}>MMRMMRMRRM</button>
                             </li>
                         </ul>
                     </div>
