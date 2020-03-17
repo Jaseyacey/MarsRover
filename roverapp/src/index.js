@@ -63,7 +63,7 @@ class App extends React.Component {
             <div className={'app'}>
                 <h1 className={'app-name'}>Mars Rover in JavaScript / React</h1>
                 <a className={'source'} href={'https://github.com/jaseyacey/MarsRover'}
-                   title={'Source code for Mars Rover in JavaScript and React'}>Source</a>
+                   title={'Source code for Mars Rover in JavaScript and React'}>Source Code</a>
                 <div className={`control-panel`}>
                     <div className={'start-position'}>
                         <label
