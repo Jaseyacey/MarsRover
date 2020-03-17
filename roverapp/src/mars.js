@@ -115,5 +115,80 @@ class Mars extends React.Component {
 
     };
 
-    
+    moveRoverForward = () => {
+        const {size} = this.props;
+        const {position, facing} = this.state;
+        const moveVector = MOVE_VECTOR[facing];
+        const pos = position.split('-').map(Number);
+        const x = pos[0] + moveVector[0];
+        const y = pos[1] + moveVector[1];
+        if (x < 0 || x >= size || y < 0 || y >= size) {
+            return {error: true};
+        }
+        return {
+            position: x + '-' + y
+        };
+    };
+
+    turnRoverLeft = () => {
+        const {facing} = this.state;
+        return ({
+            facing: LEFT_TURNS_MAP[facing]
+        });
+    };
+
+    turnRoverRight = () => {
+        const {facing} = this.state;
+        return ({
+            facing: RIGHT_TURNS_MAP[facing]
+        });
+    };
+
+    render() {
+
+        const {size} = this.props;
+        let {position, facing, path} = this.state;
+        path = path || {};
+        let cells = [];
+        for (let i = size - 1; i >= 0; i--) {
+            for (let j = 0; j < size; j++) {
+                cells.push(j + "-" + i);
+            }
+        }
+        return (
+            <ul className="mars">
+                {cells.map(cell => {
+
+                    let roverElm = null;
+                    let roverPath = null;
+                    let cellStatus = '';
+
+                    if (this.state.error && this.state.end === cell) {
+                        cellStatus = 'error';
+                    }
+                    if (this.state.start === cell) {
+                        cellStatus += ' start';
+                    }
+                    if (this.state.end === cell) {
+                        cellStatus += ' end';
+                    }
+
+                    if (position === cell) {
+                        roverElm = <Rover facing={facing}/>;
+                    } else {
+                        roverPath = (path[cell] ? <Rover facing={path[cell]} ghost={true}/> : null);
+                    }
+
+                    return (
+                        <li className={`cell ${!!path[cell] ? 'path' : ''} ${cellStatus}`} key={cell}>
+                            <label>{cell}</label>
+                            {roverElm || roverPath}
+                        </li>
+                    );
+                })}
+            </ul>
+        );
+    }
+}
+
 export default Mars;
