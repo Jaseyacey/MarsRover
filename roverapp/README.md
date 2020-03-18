@@ -7,5 +7,6 @@ Commands are:
 
 To start the program run `Yarn Start` 
 
-The code is built with React JS and the testing module used is Jest and Babel
+The code is built with React JS and the testing module used is Jest and Babel<br>
 I am quite new to testing so this is a work in progress. 
+
